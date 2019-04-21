@@ -1,0 +1,13 @@
+h1 {
+    color: red;
+}
+
+.modal {
+    width: 22%;
+    height: 50%;
+    position: absolute;
+    left: 50%;
+    top: 40%; 
+    margin-left: -150px;
+    margin-top: -150px;
+ }

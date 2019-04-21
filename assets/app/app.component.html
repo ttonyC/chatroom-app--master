@@ -1,0 +1,122 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="text-center">Welcome to Chat Application</h2>
+  
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" [(ngModel)]="user" class="form-control" id="username" placeholder="Enter username">
+            
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <label for="roomInput">Choose room</label>
+            <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
+                <option value="VGaming">Vintage Gaming</option>
+                <option value="PCGaming">PC Gaming</option>
+                <option value="CGaming">Console Gaming</option>
+                <option value="HHGaming">HandHeld Gaming</option>
+                <option value="VRGaming">Virtual Reality</option>
+
+
+            </select>
+        </div>
+        <div class="col sm-2">
+            <div style="margin-top:19px;" class="pull-right"> 
+                <button type="button" class="btn btn-primary" (click)="join()">Join</button>
+                <button type="button" class="btn btn-warning" (click)="admin()">Admin</button>
+                <button type="button" class="btn btn-default" (click)="leave()">Leave</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="well" style="height:200px; padding:15px; background-color: burlywood">
+            <div *ngFor="let item of messageArray">
+            <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="messageText">            
+        </div>
+        <div class="col-sm-2">
+                <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <div id="modal-wrapper" class="modal">
+        <form id="modal-form" class="modal-content animate" style="background-color: cadetblue">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="close()">&times;</button>
+            </div>
+            <div class="container" style="padding: 20px">
+                <input id="username" type="text" class="form-control" placeholder="Enter Username" style="margin-left: 30px; width: 300px;" name="username">
+                <input id="password" type="password"class="form-control" placeholder="Enter Password" style="margin: 10px; margin-left: 30px; width: 300px;" name="password">
+            </div>
+            <button class="btn btn-primary" type="submit" style="margin-left:41%; margin-right:40%; margin-bottom: 10px" (click)=login()>Login</button>
+        </form>
+    </div>
+
+    <div id="modal-database" class="modal" style="">
+            <form class="modal-content animate" style="background-color: cadetblue">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" (click)="close()">&times;</button>
+                </div>
+               <table>
+                   <tr>
+                       <td><a class="btn btn-success" href="/api/eventlog">Event History</a></td>
+                       <td><a class="btn btn-success" href="/api/chathistory">Chat History</a></td>
+                       <td><a class="btn btn-success" href="/api/roomhistory">Room History</a></td>
+                       <td><a class="btn btn-warning" (click)="add()">Add Room</a></td>
+                   </tr>
+                   <tr>
+                        <td *ngFor="let each of events">
+                            <article class="event">
+                                <div>Title: {{this.event}}</div>
+                                <div>Socket: {{this.socket}}</div>
+                                <div>Room: {{this.room}}</div>
+                                <div>Time: {{this.created}}</div>
+                            </article>
+                        </td>
+                        <td *ngFor="let chat of chats">
+                            <article class="chat">
+                                <div>User: {{chat.user}}</div>
+                                <div>Message: {{chat.msg}}</div>
+                                <div>Room: {{chat.room}}</div>
+                                <div>Time: {{chat.created}}</div>
+                            </article>
+                        </td>
+
+                        <td *ngFor="let room of rooms">
+                                <article class="room">
+                                    <div>User: {{room.user}}</div>
+                                    <div>Room: {{room.room}}</div>
+                                    <div>Time: {{room.created}}</div>
+                                    <button class="btn btn-warning" (click)="remove()">Remove</button>
+                                </article>
+                        </td>
+                     </tr>
+               </table>
+            </form>
+        </div>
+
+        <div id="modal-room" class="modal">
+            <form class="modal-content animate" style="background-color:coral">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" (click)="close()">&times;</button>
+                </div>
+                <div class="center-block col-md-4" style="float: none;width: 300px">
+                <input id="roomName" type="text" class="form-control" placeholder="Room Name" name="roomName">
+                <select name="Status" id="Status" class="form-control">
+                    <option value="active">Active</option>
+                    <option value="disabelled">Disabelled</option>
+                </select>       
+                <button class="btn btn btn-success" (click)="close()">Submit</button>     
+            </div>
+            </form>
+        </div>
