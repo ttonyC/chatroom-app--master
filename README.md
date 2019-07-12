@@ -13,14 +13,14 @@ This project is an online chatroom application where users can message other use
 
 The user also has the option to create a username or stay anonymous, once joined into a room the user can send and receive messages or leave the current room to join another. The Admin Login allows an administrator to view all past messages, users, rooms and actions which are stored in an mlab database
 
-# Programs & Languages Used
+# Programs & Libraries Used
 ```
 Java
-Node.js
-NPM
-Socket.io
-TypeScript
-Bootstrap
+- Node.js
+- NPM
+- Socket.io
+- TypeScript
+- Bootstrap
 CSS
 HTML
 ```
