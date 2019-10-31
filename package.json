@@ -28,7 +28,7 @@
     "git": "^0.1.5",
     "hbs": "~3.1.0",
     "mongodb": "^2.2.33",
-    "mongoose": "^5.4.17",
+    "mongoose": "^5.7.5",
     "morgan": "~1.6.1",
     "nodemon": "^1.18.11",
     "reflect-metadata": "^0.1.3",
